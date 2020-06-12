@@ -20,11 +20,11 @@ library(hrbrthemes)
 
 Average daily case increases in Arizona and Pima County have rapidly increased since Memorial Day Weekend.  
 *Key Dates in Arizona*
-03/15: Schools Close
-03/31: Stay at Home Order goes into effect
-04/23: Testing Expands
-05/15: Stay at Home Order expires
-05/25: Memorial Day
+03/15: Schools Close  
+03/31: Stay at Home Order goes into effect  
+04/23: Testing Expands  
+05/15: Stay at Home Order expires  
+05/25: Memorial Day  
 
 ```{r echo=FALSE}
 RAWAZPIMACOVID<-read.csv(file='COVID AZ PIMA Cases Simple.csv')
