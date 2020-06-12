@@ -1,7 +1,7 @@
 ---
 title: "Trends in COVID 19 Case Increases & Key Hospital Metrics"
 author: "Kara Haberstock Tanoue"
-date: "6/11/2020"
+date: "6/12/2020"
 output: 
   html_document:
     theme: paper
@@ -93,7 +93,7 @@ detach(AZPIMACOVID)
 
 
 #split out hospital data to nix NAs
-HOSPAZPIMA<-AZPIMACOVID[complete.cases(AZPIMACOVID),]
+HOSPAZPIMA<-AZPIMACOVID[!is.na(AZPIMACOVID$AZinHosp),]
 HOSPAZPIMA<-data.frame(HOSPAZPIMA)
 attach(HOSPAZPIMA)
 #summary(HOSPAZPIMA)
@@ -130,5 +130,5 @@ All hospital metrics are collected by ADHS through the EMResource platform. The 
 
 ### Data & Methods:
 
-All data on COVID-19 case counts and hospital metrics are drawn from the Arizona Department of Health Services (ADHS) COVID-19 Data Dashboard, accessed at [the ADHS COVID-19 Dashboard](https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php). These data were last updated at 9:00 AM on 06.11.2020  
+All data on COVID-19 case counts and hospital metrics are drawn from the Arizona Department of Health Services (ADHS) COVID-19 Data Dashboard, accessed at [the ADHS COVID-19 Dashboard](https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php). These data were last updated at 9:00 AM on 06.12.2020  
 Data analyzed and visualized by Kara Haberstock Tanoue.
