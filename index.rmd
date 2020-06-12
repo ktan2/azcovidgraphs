@@ -19,7 +19,7 @@ library(hrbrthemes)
 ## 7-Day Average Case Increases in Arizona & Pima County
 
 Average daily case increases in Arizona and Pima County have rapidly increased since Memorial Day Weekend.  
-*Key Dates in Arizona*
+*Key Dates in Arizona*  
 03/15: Schools Close  
 03/31: Stay at Home Order goes into effect  
 04/23: Testing Expands  
