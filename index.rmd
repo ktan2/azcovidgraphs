@@ -45,7 +45,7 @@ casefig<-ggplot(data=AZPIMACOVID, aes(x=CaseDate, y=AvgIncrease), size=2, alpha=
   scale_color_manual(values=c('#1FFFFF','#60079C'))+
   theme_ipsum(base_family = 'Arial Narrow')+
   theme(legend.position = 'bottom')+
-  scale_x_date(name="Date", breaks = c(as.Date('2020-3-15'), as.Date('2020-3-31'), as.Date('2020-4-23'), as.Date('2020-5-15'), as.Date('2020-5-25')), date_minor_breaks = "1 day", date_labels = "%m/%d")+
+  scale_x_date(name="Major Dates", breaks = c(as.Date('2020-3-15'), as.Date('2020-3-31'), as.Date('2020-4-23'), as.Date('2020-5-15'), as.Date('2020-5-25')), date_minor_breaks = "1 day", date_labels = "%m/%d")+
   scale_y_continuous(name = "Case Increase", breaks = seq(0,1300,100))+
   scale_alpha(guide="none")+
   scale_size(guide="none")+
