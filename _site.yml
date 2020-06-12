@@ -1,0 +1,9 @@
+name: "AZ_COVID_Graphs"
+output_dir: "."
+navbar:
+  title: "AZ COVID Graphs"
+  left:
+  - text: "Home"
+    href: COVIDVizAZPIMA.html
+  - text: "About Me"
+    href: https://www.kara-tanoue.com 
