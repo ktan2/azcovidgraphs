@@ -1,5 +1,5 @@
 ---
-title: "Trends in Trends in COVID 19 Case Increases & Key Hospital Metrics"
+title: "Trends in COVID 19 Case Increases & Key Hospital Metrics"
 author: "Kara Haberstock Tanoue"
 date: "6/11/2020"
 output: 

@@ -1,8 +1,0 @@
----
-title: "about"
-author: "Kara Haberstock Tanoue"
-date: "6/11/2020"
-output: html_document
----
-
-Who am i
