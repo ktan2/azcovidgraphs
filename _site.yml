@@ -4,6 +4,6 @@ navbar:
   title: "AZ COVID Graphs"
   left:
   - text: "Home"
-    href: COVIDVizAZPIMA.html
+    href: index.html
   - text: "About Kara"
     href: https://www.kara-tanoue.com 

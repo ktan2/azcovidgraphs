@@ -1,3 +1,134 @@
 ---
-  title: "Trends in COVID-19"
+title: "Trends in COVID 19 Case Increases & Key Hospital Metrics"
+author: "Kara Haberstock Tanoue"
+date: "6/11/2020"
+output: 
+  html_document:
+    theme: paper
+    highlight: kate
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(ggplot2)
+library(plotly)
+library(gapminder)
+library(hrbrthemes)
+```
+
+## 7-Day Average Case Increases in Arizona & Pima County
+
+Average daily case increases in Arizona and Pima County have rapidly increased since Memorial Day Weekend. 
+
+```{r echo=FALSE}
+RAWAZPIMACOVID<-read.csv(file='COVID AZ PIMA Cases Simple.csv')
+AZPIMACOVID<- data.frame(RAWAZPIMACOVID)
+#convert excel formatting to date
+AZPIMACOVID$CaseDate<-as.Date(AZPIMACOVID$Date,origin = "1899-12-30")
+attach(AZPIMACOVID)
+#summary(AZPIMACOVID)
+
+update_geom_defaults("text", list(size=10))
+casefig<-ggplot(data=AZPIMACOVID, aes(x=CaseDate, y=AvgIncrease), size=2, alpha=0.7)+
+  geom_point(aes(y = AZ7DayAvgInc, color= "AZ 7-Day Avg Increase", text = paste0(format.Date(CaseDate,"%m/%d"),": ",format(AZ7DayAvgInc, digits = 2))))+
+  geom_point(aes(y = Pima7DayAvgCaseInc, color= 'Pima County 7-Day Avg Increase', text = paste0(format.Date(CaseDate,"%m/%d"),": ", format (Pima7DayAvgCaseInc, digits = 2))))+
+  geom_vline(xintercept = as.numeric(as.Date('2020-3-15')), linetype='dashed', color='#FD6035', size=1)+
+  geom_text(data = AZPIMACOVID, aes(x=as.Date('2020-3-15'), y= AZ7DayAvgInc[length(AZ7DayAvgInc)]), label= 'Schools Close', color= '#FFFFFF', size=1, family= 'Arial Narrow', fontface='plain')+
+  geom_vline(xintercept = as.numeric(as.Date('2020-3-31')), color='#DE3202', size=1)+
+  geom_text(data = AZPIMACOVID, aes(x=as.Date('2020-3-31'), y= AZ7DayAvgInc[length(AZ7DayAvgInc)]), label= 'Stay at Home Order', color= '#FFFFFF', size=3, family= 'Arial Narrow', fontface='plain')+
+  geom_vline(xintercept = as.numeric(as.Date('2020-4-23')), linetype= 'dashed', color= '#0E7C7B', size = 1)+
+  geom_text(data = AZPIMACOVID, aes(x=as.Date('2020-4-23'), y= AZ7DayAvgInc[length(AZ7DayAvgInc)]), label= 'Expanded Testing', color= '#FFFFFF', size=1, family= 'Arial Narrow', fontface='plain')+
+  geom_vline(xintercept = as.numeric(as.Date('2020-5-15')), color='#DE3202', size= 1)+
+  geom_text(data = AZPIMACOVID, aes(x=as.Date('2020-5-15'), y= AZ7DayAvgInc[length(AZ7DayAvgInc)]), label= 'Order End', color= '#FFFFFF', size=1, family= 'Arial Narrow', fontface='plain')+
+  geom_vline(xintercept = as.numeric(as.Date('2020-5-25')), linetype = 'dashed', color= '#cc8f00', size= 1)+
+  geom_text(data = AZPIMACOVID, aes(x=as.Date('2020-5-25'), y= AZ7DayAvgInc[length(AZ7DayAvgInc)]), label= 'Memorial Day', color= '#FFFFFF', size=1, family= 'Arial Narrow', fontface='plain')+
+  scale_color_manual(values=c('#1FFFFF','#60079C'))+
+  theme_ipsum(base_family = 'Arial Narrow')+
+  theme(legend.position = 'bottom')+
+  scale_x_date(name="Date", breaks = c(as.Date('2020-3-15'), as.Date('2020-3-31'), as.Date('2020-4-23'), as.Date('2020-5-15'), as.Date('2020-5-25')), date_minor_breaks = "1 day", date_labels = "%m/%d")+
+  scale_y_continuous(name = "Case Increase", breaks = seq(0,1300,100))+
+  scale_alpha(guide="none")+
+  scale_size(guide="none")+
+  guides(color=guide_legend(title=NULL))
+
+
+ggplotly(casefig, width= 800, height= 400, tooltip = "text") %>%
+  layout(hovermode = "x unified", legend= list(orientation= "h", x=0.2, y=-0.3)) %>%
+  style(casefig, mode="markers+lines", opacity=0.7)
+```
+
+The 7-Day Average Daily Case Increase variable is a derived variable obtained by averaging the new cases added each day over a rolling 7-day window. A 7-day window was used as there are strong day of the week effects in data reporting.
+
+## Case-to-Test Ratios
+
+The Case-to-Test ratio has been steadily rising for both Arizona and Pima County, indicating that the increase in cases is not simply due to increased testing. 
+
+```{r echo=FALSE}
+CTRfig<-ggplot(data=AZPIMACOVID, aes(x=CaseDate, y=CaseToTest), size=2, alpha=0.7)+
+  geom_point(aes(y = AZCTR, color= "AZ 7-Day Avg Case-Test Ratio", text = paste0(format.Date(CaseDate,"%m/%d"),": ",format(AZCTR, digits = 2))))+
+  geom_point(aes(y = PIMACTR, color= 'Pima County 7-Day Avg Case-Test Ratio', text = paste0(format.Date(CaseDate,"%m/%d"),": ", format (PIMACTR, digits = 2))))+
+  scale_color_manual(values=c('#1FFFFF','#60079C'))+
+  theme_ipsum(base_family = 'Arial Narrow', base_size= 11.5)+
+  theme(legend.position = 'bottom')+
+  scale_x_date(name="Date", date_breaks = "1 week", date_minor_breaks = "1 day", date_labels = "%m/%d")+
+  scale_y_continuous(name = "Case to Test Ratio", breaks = seq(0,1300,100))+
+  scale_alpha(guide="none")+
+  scale_size(guide="none")+
+  guides(color=guide_legend(title=NULL))
+
+ggplotly(CTRfig, width= 800, height= 400, tooltip = "text") %>%
+  layout(hovermode = "x unified", legend= list(orientation= "h", x=0.2, y=-0.3)) %>%
+  style(CTRfig, mode="markers+lines", opacity=0.7)
+
+```
+
+The Case-to-Test Ratio is the ratio of confirmed COVID-19 cases to the total number of PCR tests administered. If the number of cases is increasing due to increased testing, we expect this ratio to remain constant. A rising case-to-test ratio indicates accelerating spread of COVID-19 or insufficient testing. 
+
+## Key Hospital Metrics
+
+Hospital Hospital COVID-19 specific metrics have been rapidly trending up in the last 2 weeks across Arizona.
+
+```{r echo=FALSE}
+detach(AZPIMACOVID)
+
+
+#split out hospital data to nix NAs
+HOSPAZPIMA<-AZPIMACOVID[complete.cases(AZPIMACOVID),]
+HOSPAZPIMA<-data.frame(HOSPAZPIMA)
+attach(HOSPAZPIMA)
+#summary(HOSPAZPIMA)
+
+
+
+#Plotting Hospital Data-- import necessary libraries
+
+
+hospfig<-ggplot(data = HOSPAZPIMA, aes(x = CaseDate, y = Patients/Beds), size=2, alpha=0.7) + 
+  geom_point(aes(y = AZinHosp, color= "AZ Inpatient", text = paste0(format.Date(CaseDate,"%m/%d"),": ",AZinHosp, " Inpatient")))+
+  geom_point(aes(y = AZinED, color= 'AZ Emergency Dept', text = paste0(format.Date(CaseDate,"%m/%d"),": ",AZinED, " ED")))+
+  geom_point(aes(y = AZinICU, color= 'AZ ICU Beds', text = paste0(format.Date(CaseDate,"%m/%d"),": ",AZinICU, " ICU")))+
+  geom_point(aes(y = AZwithVent, color= 'AZ on Ventilator', text = paste0(format.Date(CaseDate,"%m/%d"),": ",AZwithVent, " Vents")))+
+  scale_color_manual(values=c('#1FFFFF','#0E7C7B','#60079C','#DE3202'))+
+  theme_ipsum(base_family = 'Arial Narrow', base_size= 11.5)+
+  theme(legend.position = 'bottom')+
+  scale_x_date(name="Date", date_breaks = "1 week", date_minor_breaks = "1 day", date_labels = "%m/%d")+
+  scale_y_continuous(name = "Patients or Beds", breaks = seq(0,1300,100))+
+  scale_alpha(guide="none")+
+  scale_size(guide="none")+
+  guides(color=guide_legend(title=NULL))
+
+
+ggplotly(hospfig, width= 800, height= 400, tooltip = "text") %>%
+  layout(hovermode = "x unified", legend= list(orientation= "h", x=0.1, y=-0.3)) %>%
+  style(hospfig, mode="markers+lines", opacity=0.7)
+
+
+```
+
+
+All hospital metrics are collected by ADHS through the EMResource platform. The data reflect hospital reported bed usage and resource availability at 5:00 PM the preceding day.
+
+### Data & Methods:
+
+All data on COVID-19 case counts and hospital metrics are drawn from the Arizona Department of Health Services (ADHS) COVID-19 Data Dashboard, accessed at [the ADHS COVID-19 Dashboard](https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php). These data were last updated at 9:00 AM on 06.11.2020  
+Data analyzed and visualized by Kara Haberstock Tanoue.
