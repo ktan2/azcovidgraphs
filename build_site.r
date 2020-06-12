@@ -5,5 +5,5 @@
 
 setwd("C:\\Users\\karat\\Box\\GIS Remote Work\\AZPIMA_COVID19\\azcovidgraphs")
 
-#render
+#render the site
 rmarkdown::render_site()
