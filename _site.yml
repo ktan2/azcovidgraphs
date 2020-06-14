@@ -1,7 +1,7 @@
 name: "AZ_COVID_Graphs"
 output_dir: "."
 navbar:
-  title: "AZ COVID Graphs"
+  title: "AZ COVID-19 Trends"
   left:
   - text: "Home"
     href: index.html
