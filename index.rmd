@@ -61,7 +61,7 @@ casefig<-ggplot(data=AZPIMACOVID, aes(x=CaseDate, y=AvgIncrease), size=2, alpha=
 
 
 ggplotly(casefig, width= 800, height= 600, tooltip = "text") %>%
-  layout(hovermode = "x unified", legend= list(orientation= "h", x=0.2, y=-0.3)) %>%
+  layout(hovermode = "x unified", legend= list(orientation= "h", x=0.2, y=-0.1)) %>%
   style(casefig, mode="markers+lines", opacity=0.7)
 ```
 
@@ -94,7 +94,7 @@ The Case-to-Test Ratio is the ratio of confirmed COVID-19 cases to the total num
 
 ## Key Hospital Metrics
 
-Hospital Hospital COVID-19 specific metrics have been rapidly trending up in the last 2 weeks across Arizona.
+Hospital COVID-19 specific metrics have been rapidly trending up in the last 3 weeks across Arizona.
 
 ```{r echo=FALSE}
 detach(AZPIMACOVID)
