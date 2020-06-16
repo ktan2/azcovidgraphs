@@ -18,7 +18,11 @@ library(hrbrthemes)
 
 ## 7-Day Average Case Increases in Arizona & Pima County
 
-Average daily case increases in Arizona and Pima County have rapidly increased since Memorial Day Weekend.   
+Average daily case increases in Arizona and Pima County have rapidly increased since Memorial Day Weekend.  
+  
+Note that typically it takes 10-14 days to see the effects of major policy changes or events. This is due to both the incubation period of COVID-19 (median of 4-5 days between exposure and symptom onset according to the CDC) and the reporting lag for new case datat (typically 4-7 days according to ADHS).  
+  
+Average daily cases increases began to reliably increase beginning on May 29, which was 14 days following the expiration of stay at home orders in Arizona.   
 
 #### Key Dates in Arizona  
 
@@ -142,7 +146,7 @@ All data on COVID-19 case counts and hospital metrics are drawn from the Arizona
   
 **Data analyzed and visualized by [Kara Haberstock Tanoue](https://www.karatanoue.com).**
 
-### Other Dashboards worth following:
+### Other Dashboards Worth Following:
 
-**[COVID Act Now](https://covidactnow.org)**: provides a model of infection rates and key metrics for states and counties across the U.S.  
-**[COVID Racial Data Tracker](https://covidtracking.com/race)**: provides data on race & ethnicity for COVID-19 cases across the U.S. and tracks racial and ethnic disparities in cases and deaths. 
+**[COVID Act Now](https://covidactnow.org)**: Provides a model of infection rates and key metrics for states and counties across the U.S.  
+**[COVID Racial Data Tracker](https://covidtracking.com/race)**: Provides data on race & ethnicity for COVID-19 cases across the U.S. and tracks racial and ethnic disparities in cases and deaths. 
