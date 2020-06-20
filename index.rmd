@@ -18,7 +18,7 @@ library(hrbrthemes)
 
 ## 7-Day Average Case Increases in Arizona & Pima County
 
-Average daily case increases in Arizona and Pima County have rapidly increased since Memorial Day Weekend. Tuesday, June 16, had a record single-day case increase Pima County (385), while today, June 18, saw the highest day-to-day case increase in Arizona (2,519).
+Average daily case increases in Arizona and Pima County have rapidly increased since Memorial Day Weekend. Tuesday, June 16, had a record single-day case increase Pima County (385), while today, June 19, saw the highest day-to-day case increase in Arizona (3,246).
   
 Note that typically it takes 10-14 days to see the effects of major policy changes or events. This is due to both the incubation period of COVID-19 (median of 4-5 days between exposure and symptom onset according to the CDC) and the reporting lag for new case datat (typically 4-7 days according to ADHS).  
   
