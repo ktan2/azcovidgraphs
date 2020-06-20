@@ -58,7 +58,7 @@ casefig<-ggplot(data=AZPIMACOVID, aes(x=CaseDate, y=AvgIncrease), size=2, alpha=
   theme_ipsum(base_family = 'Arial Narrow')+
   theme(legend.position = 'bottom')+
   scale_x_date(name="Major Dates", breaks = c(as.Date('2020-3-15'), as.Date('2020-3-31'), as.Date('2020-4-23'), as.Date('2020-5-15'), as.Date('2020-5-25')), date_minor_breaks = "1 day", date_labels = "%m/%d")+
-  scale_y_continuous(name = "Case Increase", breaks = seq(0,1600,100))+
+  scale_y_continuous(name = "Case Increase", breaks = seq(0,2000,100))+
   scale_alpha(guide="none")+
   scale_size(guide="none")+
   guides(color=guide_legend(title=NULL))
@@ -124,7 +124,7 @@ hospfig<-ggplot(data = HOSPAZPIMA, aes(x = CaseDate, y = Patients/Beds), size=2,
   theme_ipsum(base_family = 'Arial Narrow', base_size= 11.5)+
   theme(legend.position = 'bottom')+
   scale_x_date(name="Date", date_breaks = "1 week", date_minor_breaks = "1 day", date_labels = "%m/%d")+
-  scale_y_continuous(name = "Patients or Beds", breaks = seq(0,1800,200))+
+  scale_y_continuous(name = "Patients or Beds", breaks = seq(0,2200,200))+
   scale_alpha(guide="none")+
   scale_size(guide="none")+
   guides(color=guide_legend(title=NULL))
