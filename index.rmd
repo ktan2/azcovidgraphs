@@ -1,7 +1,7 @@
 ---
 title: "Trends in COVID 19 Case Increases & Key Hospital Metrics"
 author: "Created by Kara Haberstock Tanoue"
-date: "6/20/2020"
+date: "6/21/2020"
 output: 
   html_document:
     theme: paper
@@ -18,7 +18,7 @@ library(hrbrthemes)
 
 ## 7-Day Average Case Increases in Arizona & Pima County
 
-Average daily case increases in Arizona and Pima County have rapidly increased since Memorial Day Weekend. Tuesday, June 16, had a record single-day case increase Pima County (385), while today, June 19, saw the highest day-to-day case increase in Arizona (3,246).
+Average daily case increases in Arizona and Pima County have rapidly increased since Memorial Day Weekend. Tuesday, June 16, had a record single-day case increase Pima County (385), while Friday, June 19, saw the highest day-to-day case increase in Arizona (3,246).
   
 Note that typically it takes 10-14 days to see the effects of major policy changes or events. This is due to both the incubation period of COVID-19 (median of 4-5 days between exposure and symptom onset according to the CDC) and the reporting lag for new case datat (typically 4-7 days according to ADHS).  
   
@@ -89,7 +89,7 @@ CTRfig<-ggplot(data=AZPIMACOVID, aes(x=CaseDate, y=CaseToTest), size=2, alpha=0.
   guides(color=guide_legend(title=NULL))
 
 ggplotly(CTRfig, width= 800, height= 400, tooltip = "text") %>%
-  layout(hovermode = "x unified", legend= list(orientation= "h", x=0.2, y=-0.3)) %>%
+  layout(hovermode = "x unified", legend= list(orientation= "h", x=0.2, y=-0.2)) %>%
   style(CTRfig, mode="markers+lines", opacity=0.7)
 
 ```
@@ -131,7 +131,7 @@ hospfig<-ggplot(data = HOSPAZPIMA, aes(x = CaseDate, y = Patients/Beds), size=2,
 
 
 ggplotly(hospfig, width= 800, height= 600, tooltip = "text") %>%
-  layout(hovermode = "x unified", legend= list(orientation= "h", x=0.1, y=-0.3)) %>%
+  layout(hovermode = "x unified", legend= list(orientation= "h", x=0.1, y=-0.2)) %>%
   style(hospfig, mode="markers+lines", opacity=0.7)
 
 
@@ -142,7 +142,7 @@ All hospital metrics are collected by ADHS through the EMResource platform. The 
 
 ### Data & Methods:
 
-All data on COVID-19 case counts and hospital metrics are drawn from the Arizona Department of Health Services (ADHS) COVID-19 Data Dashboard, accessed at [https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php](https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php). These data were last updated at 9:00 AM on 06.20.2020 
+All data on COVID-19 case counts and hospital metrics are drawn from the Arizona Department of Health Services (ADHS) COVID-19 Data Dashboard, accessed at [https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php](https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php). These data were last updated at 9:00 AM on 06.21.2020 
   
 **Data analyzed and visualized by [Kara Haberstock Tanoue](https://www.karatanoue.com).**
 
