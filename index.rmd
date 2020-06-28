@@ -82,7 +82,7 @@ CTRfig<-ggplot(data=AZPIMACOVID, aes(x=CaseDate, y=CaseToTest), size=2, alpha=0.
   scale_color_manual(values=c('#1FFFFF','#60079C'))+
   theme_ipsum(base_family = 'Arial Narrow', base_size= 11.5)+
   theme(legend.position = 'bottom')+
-  scale_x_date(name="Date", date_breaks = "1 week", date_minor_breaks = "1 day", date_labels = "%m/%d")+
+  scale_x_date(name="Date", date_breaks = "2 weeks", date_minor_breaks = "1 day", date_labels = "%m/%d")+
   scale_y_continuous(name = "Case to Test Ratio", breaks = seq(0,1,0.1))+
   scale_alpha(guide="none")+
   scale_size(guide="none")+
