@@ -133,8 +133,6 @@ hospfig<-ggplot(data = HOSPAZPIMA, aes(x = CaseDate, y = Patients/Beds), size=2,
 ggplotly(hospfig, width= 800, height= 600, tooltip = "text") %>%
   layout(hovermode = "x unified", legend= list(orientation= "h", x=0.1, y=-0.2)) %>%
   style(hospfig, mode="markers+lines", opacity=0.7)
-
-
 ```
 
 

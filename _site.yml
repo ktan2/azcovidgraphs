@@ -7,3 +7,5 @@ navbar:
     href: index.html
   - text: "About Kara Haberstock Tanoue"
     href: https://www.kara-tanoue.com 
+  - text: "Data by County"
+    href: azcounties.html

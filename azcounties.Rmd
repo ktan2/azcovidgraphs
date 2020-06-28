@@ -1,0 +1,80 @@
+---
+title: "Case Increase Trends by County"
+author: "Kara Haberstock Tanoue"
+date: "6/27/2020"
+output: 
+  html_document:
+    theme: paper
+    highlight: kate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(ggplot2)
+library(plotly)
+library(gapminder)
+library(hrbrthemes)
+library(RCurl)
+library(tidyverse)
+```
+
+## 7-Day Average Daily Case Increases in Arizona Counties
+
+Average daily case increases are on an upward trend in most counties in Arizona.
+  
+Note that typically it takes 10-14 days to see the effects of major policy changes or events. This is due to both the incubation period of COVID-19 (median of 4-5 days between exposure and symptom onset according to the CDC) and the reporting lag for new case data (typically 4-7 days according to ADHS).  
+  
+#### Key Dates in Arizona  
+
+**03/15**: Schools Close  
+**03/31**: Stay at Home Order goes into effect  
+**04/23**: Testing Expands  
+**05/15**: Stay at Home Order expires  
+**05/25**: Memorial Day  
+
+
+```{r echo=FALSE}
+NYTcsvpull<-getURL("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv")
+CountyCOVIDCases<-data.frame(read.csv(text = NYTcsvpull))
+AZCountyCOVID<-subset(CountyCOVIDCases, state == "Arizona")
+AZCountyCOVID<-subset(AZCountyCOVID, county != "Unknown")
+AZCountyCOVID$date<-as.Date(AZCountyCOVID$date)
+
+#calculate avg daily case increase
+AZCountyCOVID<-AZCountyCOVID  %>% 
+  group_by(county) %>%
+  arrange(date, .by_group = TRUE) %>%
+  mutate(D7AVGINC=(cases-lag(cases,7))/7)
+
+AZCountyCOVID<-AZCountyCOVID %>%
+  ungroup(county)
+
+#subset to no NA
+AZCountyCOVID<-subset(AZCountyCOVID, AZCountyCOVID$date >= as.Date('2020-3-9'))
+AZCountyCOVIDinc<-AZCountyCOVID[!is.na(AZCountyCOVID$D7AVGINC),]
+
+countyincfig<-ggplot(AZCountyCOVIDinc, aes(x=date, y=D7AVGINC, group=county, color=county, text = paste0(format.Date(date,"%m/%d"), ": ",format(D7AVGINC, digits = 2))), size=2, alpha=0.7) +
+  geom_point()+
+  facet_wrap(county ~ ., ncol = 1, scales = "free_y")+
+  theme_ipsum(base_family = "Arial Narrow")+
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(), legend.position = 'none')+
+  scale_x_date(name="Date", date_breaks = "2 weeks", date_minor_breaks = "1 day", date_labels = "%m/%d")+
+  scale_y_continuous(name = "Case Increase\n")+
+  guides(color= FALSE, size= FALSE, alpha= FALSE)
+
+ggplotly(countyincfig, width= 800, height= 2000, tooltip = "text") %>%
+  layout(hovermode = "x unified") %>%
+  style(countyincfig, mode="markers+lines")
+
+```
+
+### Data & Methods:
+
+County data on COVID-19 case counts are drawn from the New York Times COVID-19 Data Repsitory, accessed at [https://github.com/nytimes/covid-19-data](https://github.com/nytimes/covid-19-data). The 7-Day Average Daily Case Increase variable is a derived variable obtained by averaging the new cases added each day over a rolling 7-day window. A 7-day window was used as there are strong day of the week effects in data reporting. These data were last updated on 06.27.2020 
+  
+**Data analyzed and visualized by [Kara Haberstock Tanoue](https://www.karatanoue.com).**
+
+### Other Dashboards Worth Following:
+
+**[COVID Act Now](https://covidactnow.org)**: Provides a model of infection rates and key metrics for states and counties across the U.S.  
+**[COVID Racial Data Tracker](https://covidtracking.com/race)**: Provides data on race & ethnicity for COVID-19 cases across the U.S. and tracks racial and ethnic disparities in cases and deaths. 
