@@ -1,7 +1,7 @@
 ---
 title: "Trends in COVID 19 Case Increases & Key Hospital Metrics"
 author: "Created by Kara Haberstock Tanoue"
-date: "6/27/2020"
+date: "6/28/2020"
 output: 
   html_document:
     theme: paper
@@ -58,7 +58,7 @@ casefig<-ggplot(data=AZPIMACOVID, aes(x=CaseDate, y=AvgIncrease), size=2, alpha=
   theme_ipsum(base_family = 'Arial Narrow')+
   theme(legend.position = 'bottom')+
   scale_x_date(name="Major Dates", breaks = c(as.Date('2020-3-15'), as.Date('2020-3-31'), as.Date('2020-4-23'), as.Date('2020-5-15'), as.Date('2020-5-25')), date_minor_breaks = "1 day", date_labels = "%m/%d")+
-  scale_y_continuous(name = "Case Increase", breaks = seq(0,2800,400))+
+  scale_y_continuous(name = "Case Increase", breaks = seq(0,3000,500))+
   scale_alpha(guide="none")+
   scale_size(guide="none")+
   guides(color=guide_legend(title=NULL))
@@ -140,7 +140,7 @@ All hospital metrics are collected by ADHS through the EMResource platform. The 
 
 ### Data & Methods:
 
-All data on COVID-19 case counts and hospital metrics are drawn from the Arizona Department of Health Services (ADHS) COVID-19 Data Dashboard, accessed at [https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php](https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php). These data were last updated at 9:00 AM on 06.27.2020 
+All data on COVID-19 case counts and hospital metrics are drawn from the Arizona Department of Health Services (ADHS) COVID-19 Data Dashboard, accessed at [https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php](https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php). These data were last updated at 9:00 AM on 06.28.2020 
   
 **Data analyzed and visualized by [Kara Haberstock Tanoue](https://www.karatanoue.com).**
 
