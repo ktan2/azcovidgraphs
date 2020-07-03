@@ -74,7 +74,7 @@ The 7-Day Average Daily Case Increase variable is a derived variable obtained by
 
 ## Tests per Positive 
 
-This is a re-calculation of the case-to-test ratio based on guidance from the [COVID Tracking Project] (https://covidtracking.com/blog/the-other-covid-19-metric). The tests per positive metric tells us how many tests we need to perform in order to find a positive case. Higher is better and indicates more testing. Currently, the tests per positive rate in Arizona is very low (1 in 4 tests is returning a positive)
+This is a re-calculation of the case-to-test ratio based on guidance from the [COVID Tracking Project](https://covidtracking.com/blog/the-other-covid-19-metric). The tests per positive metric tells us how many tests we need to perform in order to find a positive case. Higher is better and indicates more testing. Currently, the tests per positive rate in Arizona is very low (1 in 4 tests is returning a positive)
 
 ```{r echo=FALSE}
 CTRfig<-ggplot(data=AZPIMACOVID, aes(x=CaseDate, y=CaseToTest), size=2, alpha=0.7)+
