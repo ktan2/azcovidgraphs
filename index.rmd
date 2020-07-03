@@ -1,7 +1,7 @@
 ---
 title: "Trends in COVID 19 Case Increases & Key Hospital Metrics"
 author: "Created by Kara Haberstock Tanoue"
-date: "7/01/2020"
+date: "7/02/2020"
 output: 
   html_document:
     theme: paper
@@ -72,9 +72,9 @@ ggplotly(casefig, width= 800, height= 600, tooltip = "text") %>%
 
 The 7-Day Average Daily Case Increase variable is a derived variable obtained by averaging the new cases added each day over a rolling 7-day window. A 7-day window was used as there are strong day of the week effects in data reporting.
 
-## Case-to-Test Ratios
+## Tests per Positive 
 
-The Case-to-Test ratio has been steadily rising for Arizona, indicating that the increase in cases is not simply due to increased testing. This ratio has risen in Pima County since re-opening on May 15, but has started to decline slightly in the past week. However, the ratio is stil well above the recommended ratio of <0.1.
+This is a re-calculation of the case-to-test ratio based on guidance from the [COVID Tracking Project] (https://covidtracking.com/blog/the-other-covid-19-metric). The tests per positive metric tells us how many tests we need to perform in order to find a positive case. Higher is better and indicates more testing. Currently, the tests per positive rate in Arizona is very low (1 in 4 tests is returning a positive)
 
 ```{r echo=FALSE}
 CTRfig<-ggplot(data=AZPIMACOVID, aes(x=CaseDate, y=CaseToTest), size=2, alpha=0.7)+
@@ -84,19 +84,19 @@ CTRfig<-ggplot(data=AZPIMACOVID, aes(x=CaseDate, y=CaseToTest), size=2, alpha=0.
   theme_ipsum(base_family = 'Arial Narrow', base_size= 11.5)+
   theme(legend.position = 'bottom')+
   scale_x_date(name="Date", date_breaks = "2 weeks", date_minor_breaks = "1 day", date_labels = "%m/%d")+
-  scale_y_continuous(name = "Case to Test Ratio", breaks = seq(0,1,0.1))+
+  scale_y_continuous(name = "Tests Per Positive | More Testing >>>", breaks = seq(0,40,5))+
   scale_alpha(guide="none")+
   scale_size(guide="none")+
   guides(color=guide_legend(title=NULL))
 
-ggplotly(CTRfig, width= 800, height= 400, tooltip = "text") %>%
+ggplotly(CTRfig, width= 800, height= 600, tooltip = "text") %>%
   layout(hovermode = "x unified", legend= list(orientation= "h", x=0.2, y=-0.2)) %>%
   style(CTRfig, mode="markers+lines", opacity=0.7)
 
 ```
 
-The Case-to-Test Ratio is the ratio of confirmed COVID-19 cases to the total number of PCR tests administered. If the number of cases is increasing due to increased testing, we expect this ratio to remain constant. A rising case-to-test ratio indicates accelerating spread of COVID-19 or insufficient testing. 
-
+If the tests per positive is decreasing, this indicates **insufficient testing to keep up with the outbreak**.  
+  
 ## Key Hospital Metrics
 
 Hospital COVID-19 specific metrics have been rapidly trending up in the last 3 weeks across Arizona. Hospital in-patient bed usage is currently at 85% and ICU bed usage is at 89% statewide (note that beds in use include both COVID and non-COVID patients).
@@ -125,7 +125,7 @@ hospfig<-ggplot(data = HOSPAZPIMA, aes(x = CaseDate, y = Patients/Beds), size=2,
   theme_ipsum(base_family = 'Arial Narrow', base_size= 11.5)+
   theme(legend.position = 'bottom')+
   scale_x_date(name="Date", date_breaks = "1 week", date_minor_breaks = "1 day", date_labels = "%m/%d")+
-  scale_y_continuous(name = "Patients or Beds", breaks = seq(0,2800,200))+
+  scale_y_continuous(name = "Patients or Beds", breaks = seq(0,3000,200))+
   scale_alpha(guide="none")+
   scale_size(guide="none")+
   guides(color=guide_legend(title=NULL))
@@ -141,7 +141,7 @@ All hospital metrics are collected by ADHS through the EMResource platform. The 
 
 ### Data & Methods:
 
-All data on COVID-19 case counts and hospital metrics are drawn from the Arizona Department of Health Services (ADHS) COVID-19 Data Dashboard, accessed at [https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php](https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php). These data were last updated at 9:00 AM on 07.01.2020 
+All data on COVID-19 case counts and hospital metrics are drawn from the Arizona Department of Health Services (ADHS) COVID-19 Data Dashboard, accessed at [https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php](https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php). These data were last updated at 9:00 AM on 07.02.2020 
   
 **Data analyzed and visualized by [Kara Haberstock Tanoue](https://www.karatanoue.com).**
 
