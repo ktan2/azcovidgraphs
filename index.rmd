@@ -1,7 +1,7 @@
 ---
 title: "Trends in COVID 19 Case Increases & Key Hospital Metrics"
 author: "Created by Kara Haberstock Tanoue"
-date: "7/02/2020"
+date: "7/04/2020"
 output: 
   html_document:
     theme: paper
@@ -59,7 +59,7 @@ casefig<-ggplot(data=AZPIMACOVID, aes(x=CaseDate, y=AvgIncrease), size=2, alpha=
   theme_ipsum(base_family = 'Arial Narrow')+
   theme(legend.position = 'bottom')+
   scale_x_date(name="Major Dates", breaks = c(as.Date('2020-3-15'), as.Date('2020-3-31'), as.Date('2020-4-23'), as.Date('2020-5-15'), as.Date('2020-5-25')), date_minor_breaks = "1 day", date_labels = "%m/%d")+
-  scale_y_continuous(name = "Case Increase", breaks = seq(0,3000,500))+
+  scale_y_continuous(name = "Case Increase", breaks = seq(0,3500,500))+
   scale_alpha(guide="none")+
   scale_size(guide="none")+
   guides(color=guide_legend(title=NULL))
@@ -74,7 +74,7 @@ The 7-Day Average Daily Case Increase variable is a derived variable obtained by
 
 ## Tests per Positive 
 
-This is a re-calculation of the case-to-test ratio based on guidance from the [COVID Tracking Project](https://covidtracking.com/blog/the-other-covid-19-metric). The tests per positive metric tells us how many tests we need to perform in order to find a positive case. Higher is better and indicates more testing. Currently, the tests per positive rate in Arizona is very low (1 in 4 tests is returning a positive)
+This is a re-calculation of the case-to-test ratio based on guidance from the [COVID Tracking Project](https://covidtracking.com/blog/the-other-covid-19-metric). The tests per positive metric tells us how many tests we need to perform in order to find a positive case. Higher is better and indicates more testing. Currently, 1 in 4 tests in Arizona are returning a positive case, and 1 in 6 tests in Pima County are returning a positive case. In countries that have controlled the COVID-19 outbreak well, such as Thailand, 1 in 1,000 tests are rturning a positive case. We have a long ways to go.
 
 ```{r echo=FALSE}
 CTRfig<-ggplot(data=AZPIMACOVID, aes(x=CaseDate, y=CaseToTest), size=2, alpha=0.7)+
@@ -99,7 +99,7 @@ If the tests per positive is decreasing, this indicates **insufficient testing t
   
 ## Key Hospital Metrics
 
-Hospital COVID-19 specific metrics have been rapidly trending up in the last 3 weeks across Arizona. Hospital in-patient bed usage is currently at 85% and ICU bed usage is at 89% statewide (note that beds in use include both COVID and non-COVID patients).
+Hospital COVID-19 specific metrics have been rapidly trending up in the last 3 weeks across Arizona. Hospital in-patient bed usage is currently at 85% and ICU bed usage is at 90% statewide (note that beds in use include both COVID and non-COVID patients).
 
 ```{r echo=FALSE}
 detach(AZPIMACOVID)
@@ -125,7 +125,7 @@ hospfig<-ggplot(data = HOSPAZPIMA, aes(x = CaseDate, y = Patients/Beds), size=2,
   theme_ipsum(base_family = 'Arial Narrow', base_size= 11.5)+
   theme(legend.position = 'bottom')+
   scale_x_date(name="Date", date_breaks = "1 week", date_minor_breaks = "1 day", date_labels = "%m/%d")+
-  scale_y_continuous(name = "Patients or Beds", breaks = seq(0,3000,200))+
+  scale_y_continuous(name = "Patients or Beds", breaks = seq(0,3200,200))+
   scale_alpha(guide="none")+
   scale_size(guide="none")+
   guides(color=guide_legend(title=NULL))
@@ -141,11 +141,12 @@ All hospital metrics are collected by ADHS through the EMResource platform. The 
 
 ### Data & Methods:
 
-All data on COVID-19 case counts and hospital metrics are drawn from the Arizona Department of Health Services (ADHS) COVID-19 Data Dashboard, accessed at [https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php](https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php). These data were last updated at 9:00 AM on 07.02.2020 
+All data on COVID-19 case counts and hospital metrics are drawn from the Arizona Department of Health Services (ADHS) COVID-19 Data Dashboard, accessed at [https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php](https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php). These data were last updated at 9:00 AM on 07.04.2020 
   
 **Data analyzed and visualized by [Kara Haberstock Tanoue](https://www.karatanoue.com).**
 
 ### Other Dashboards Worth Following:
 
+**[COVID Risk Levels](https://globalepidemics.org/key-metrics-for-covid-suppression/)**: Provides county-level risk levels based on population-normalized case growth  
 **[COVID Act Now](https://covidactnow.org)**: Provides a model of infection rates and key metrics for states and counties across the U.S.  
 **[COVID Racial Data Tracker](https://covidtracking.com/race)**: Provides data on race & ethnicity for COVID-19 cases across the U.S. and tracks racial and ethnic disparities in cases and deaths. 
