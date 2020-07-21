@@ -1,7 +1,7 @@
 ---
 title: "Case Increase Trends by County"
 author: "Kara Haberstock Tanoue"
-date: "7/18/2020"
+date: "7/20/2020"
 output: 
   html_document:
     theme: paper
@@ -70,7 +70,7 @@ ggplotly(countyincfig, width= 800, height= 2000, tooltip = "text") %>%
 
 ### Data & Methods:
 
-County data on COVID-19 case counts are drawn from the New York Times COVID-19 Data Repsitory, accessed at [https://github.com/nytimes/covid-19-data](https://github.com/nytimes/covid-19-data). The 7-Day Average Daily Case Increase variable is a derived variable obtained by averaging the new cases added each day over a rolling 7-day window. A 7-day window was used as there are strong day of the week effects in data reporting. These data were last updated on 07.18.2020 
+County data on COVID-19 case counts are drawn from the New York Times COVID-19 Data Repsitory, accessed at [https://github.com/nytimes/covid-19-data](https://github.com/nytimes/covid-19-data). The 7-Day Average Daily Case Increase variable is a derived variable obtained by averaging the new cases added each day over a rolling 7-day window. A 7-day window was used as there are strong day of the week effects in data reporting. These data were last updated on 07.20.2020 
   
 **Data analyzed and visualized by [Kara Haberstock Tanoue](https://www.karatanoue.com).**
 
