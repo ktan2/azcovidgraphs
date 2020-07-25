@@ -1,7 +1,7 @@
 ---
 title: "Case Increase Trends by County"
 author: "Kara Haberstock Tanoue"
-date: "7/20/2020"
+date: "7/24/2020"
 output: 
   html_document:
     theme: paper
@@ -20,7 +20,7 @@ library(tidyverse)
 
 ## 7-Day Average Daily Case Increases in Arizona Counties
 
-Average daily case increases are on an upward trend in most counties in Arizona.
+Average daily case increases are stabilizing or declining after an upward trend following Memorial Day in most counties in Arizona.
   
 Note that typically it takes 10-14 days to see the effects of major policy changes or events. This is due to both the incubation period of COVID-19 (median of 4-5 days between exposure and symptom onset according to the CDC) and the reporting lag for new case data (typically 4-7 days according to ADHS).  
   
@@ -70,7 +70,7 @@ ggplotly(countyincfig, width= 800, height= 2000, tooltip = "text") %>%
 
 ### Data & Methods:
 
-County data on COVID-19 case counts are drawn from the New York Times COVID-19 Data Repsitory, accessed at [https://github.com/nytimes/covid-19-data](https://github.com/nytimes/covid-19-data). The 7-Day Average Daily Case Increase variable is a derived variable obtained by averaging the new cases added each day over a rolling 7-day window. A 7-day window was used as there are strong day of the week effects in data reporting. These data were last updated on 07.20.2020 
+County data on COVID-19 case counts are drawn from the New York Times COVID-19 Data Repsitory, accessed at [https://github.com/nytimes/covid-19-data](https://github.com/nytimes/covid-19-data). The 7-Day Average Daily Case Increase variable is a derived variable obtained by averaging the new cases added each day over a rolling 7-day window. A 7-day window was used as there are strong day of the week effects in data reporting. These data were last updated on 07.23.2020 
   
 **Data analyzed and visualized by [Kara Haberstock Tanoue](https://www.karatanoue.com).**
 
